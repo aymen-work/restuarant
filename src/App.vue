@@ -1,6 +1,17 @@
 <script setup>
+import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+var m$ = ref('Hello World')
+var d$ = ref('Signin and Login Forms')
+function signin() {
+  m$.value = 'Signup!'
+  d$.value = "Create an account if you don't already have"
+}
+function login() {
+  m$.value = 'Login!'
+  d$.value = 'Login with your account if you already have'
+}
 </script>
 
 <template>
@@ -8,11 +19,11 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld :msg="m$" :desc="d$" />
 
       <nav>
-        <RouterLink to="/sign-up">Signup</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink @click="signin" to="/sign-up">Signup</RouterLink>
+        <RouterLink @click="login" to="/login">Login</RouterLink>
       </nav>
     </div>
   </header>
@@ -39,7 +50,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: green;
 }
 
 nav a.router-link-exact-active:hover {

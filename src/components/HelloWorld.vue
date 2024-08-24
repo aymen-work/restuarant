@@ -3,6 +3,10 @@ defineProps({
   msg: {
     type: String,
     required: true
+  },
+  desc: {
+    type: String,
+    default: 'This is a simple Vue.js 3 component using Vite.'
   }
 })
 </script>
@@ -11,9 +15,7 @@ defineProps({
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      {{ desc }}
     </h3>
   </div>
 </template>
