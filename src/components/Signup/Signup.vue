@@ -1,6 +1,6 @@
 <template>
-  <form @click.prevent>
-    <div class="row g-3 align-items-center">
+  <form action="/">
+    <div class="row g-3 mb-2 align-items-center">
       <h1>Sign Up</h1>
       <div class="col-auto d-block mx-auto">
         <input
@@ -11,7 +11,7 @@
         />
       </div>
     </div>
-    <div class="row g-3 align-items-center">
+    <div class="row g-3 mb-2 align-items-center">
       <div class="col-auto d-block mx-auto">
         <input
           type="text"
@@ -21,7 +21,7 @@
         />
       </div>
     </div>
-    <div class="row g-3 align-items-center">
+    <div class="row g-3 mb-2 align-items-center">
       <div class="col-auto d-block mx-auto">
         <input
           type="password"
@@ -31,9 +31,10 @@
         />
       </div>
     </div>
-    <div class="row g-3 align-items-center">
-      <div class="col-auto d-block mx-auto">
-        <button type="submit" class="btn btn-primary">SignUp</button>
+    <div class="row g-3 mb-2 align-items-center">
+      <div class="col-auto d-block mx-auto text-center">
+        <button type="submit" class="btn btn-primary">SignUp</button><br/>
+        <button type="button" class="btn btn-link" @click="login()">Already have an account? Login</button>
       </div>
     </div>
   </form>
@@ -48,6 +49,11 @@ export default {
       email: "",
       password: "",
     };
+  },
+  methods: {
+    login(){
+      this.$router.push({ name:"Login" })
+    }
   },
 };
 </script>
