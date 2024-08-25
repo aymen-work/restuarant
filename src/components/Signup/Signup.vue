@@ -46,6 +46,7 @@
 <script>
 import useValidate from "@vuelidate/core"
 import { required,email,minLength } from "@vuelidate/validators"
+import axios from "axios";
 
 export default {
   name: "SignUpForm",
@@ -71,15 +72,30 @@ export default {
       },
     }
   },
+  mounted() {
+    let user = localStorage.getItem('user-info');
+    if(user){
+      this.$router.push({ name:"home" })
+    }
+  },
   methods: {
     login(){
       this.$router.push({ name:"Login" })
     },
-    submit(){
+    async submit(){
       this.v$.$validate()
-      // if(!this.v$.$error){
-      //   alert("Success!")
-      // }
+      if(!this.v$.$error){
+        let result = await axios.post('http://localhost:3000/user',{
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        })
+        if(result.status === 201){
+          alert("SignUp successful")
+          localStorage.setItem('user-info',JSON.stringify(result.data))
+          this.$router.push({ name:"Login" })
+        }
+      }
       // else{
       //   alert(`you must enter data ${this.v$.$errors[0].$message}`)
       // }
